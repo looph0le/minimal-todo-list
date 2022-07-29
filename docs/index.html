@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Looph0le | Todo List</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script defer src="https://unpkg.com/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&display=swap');
+
+ * {
+     font-family: 'Titillium Web', sans-serif;
+ }
+
+ .completed {
+     text-decoration: line-through;
+     text-decoration-color: black;
+     /* text-decoration-style: wavy; */
+     text-decoration-thickness: 3px;
+     text-decoration-opacity: 20%;
+ }
+</style>
+    </head>
+    <body class="bg-black/90" x-data>
+
+        <header class="flex justify-between items-center px-4 md:px-12 w-full opacity-0 transition scale-50 duration-1000" x-intersect="$el.classList.add('opacity-100', 'scale-100')">
+                <a class="md:text-xl text-sm p-2 m-3 text-black bg-yellow-400 rounded shadow-2xl shadow-amber-500/50 hover:scale-110 hover:bg-cyan-400 duration-1000 hover:shadow-cyan-300">My Todo List</a>
+                <a href="https://github.com/looph0le" target="_blank" class="text-center text-sm p-3 text-yellow-300 hover:scale-110 hover:text-cyan-500 transition duration-500">Made By Mitansh Panchal</a>
+        </header>
+
+        <div class="py-20 text-center" x-data="{ todos: [], userInput: ''}">
+
+            <form x-on:submit.prevent class="bg-white/0 py-10 m-4 rounded-xl opacity-0 scale-50 duration-1000" x-intersect="$el.classList.add('opacity-100', 'scale-100')">
+                <input x-model="userInput" class="mr-3 p-3 rounded shadow-xl shadow-black" type="text" placeholder="Enter todo item" />
+                <button x-on:click="if(userInput.trim().length > 0) todos.push({name: userInput, completed: false}); userInput = ''" class="bg-yellow-500 p-3 rounded px-4 hover:bg-yellow-300 shadow-xl shadow-black">Add</button>
+            </form>
+
+
+
+            <div class="opacity-0 scale-50 duration-1000" x-intersect="$el.classList.add('opacity-100', 'scale-100')">
+            <h1 class="text-2xl text-amber-500 m-5">Todo List</h1>
+
+            <h1 x-show="todos.length == 0" class="text-xl text-stone-400">List Empty...Enter Something</h1>
+            </div>
+
+
+            <button @click="todos = []" x-show="todos.length > 0" class="text-sm text-black m-1 p-2 mb-5 rounded-xl bg-yellow-500 hover:bg-yellow-400 opacity-0 transition duration-1000 " x-intersect="$el.classList.add('opacity-100')">Clear All</button>
+
+            <template class="bg-black/10 p-5 opacity-0 transition duration-1000" x-for="todo in todos" x-intersect="$el.classList.add('opacity-100')">
+
+                <div class="transition duration-1000 opacity-0" x-intersect="$el.classList.add('opacity-100')">
+                    <input class="text-3xl" type="checkbox"  x-model="todo.completed"  />
+                    <span class="text-xl text-amber-500 p-3 px-4 " x-text="todo.name"  x-bind:class="{'completed': todo.completed}"  ></span>
+                    <button @click="todos = todos.filter((currTodo) => currTodo != todo)" class="text-black rounded-xl m-1 px-3 p-1 bg-amber-500">X</button>
+                </div>
+
+            </template>
+
+
+            <div class="text-center p-5 opacity-0 transition translate-y-10 duration-1000" x-intersect="$el.classList.add('opacity-100', 'translate-y-0')">
+                <span x-text="todos.filter((todo) => todo.completed).length" class="text-xl text-yellow-500"></span>
+                <span class="text-white text-xl">/</span>
+                <span x-text="todos.length" class="text-xl text-yellow-500"></span>
+            </div>
+
+
+            
+        </div>
+
+
+ </body>
+</html>
