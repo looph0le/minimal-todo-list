@@ -2,8 +2,8 @@
 
 Very Minimal and Simple todo implementation using tailwindcss and alpineJs
 
-![image1](./assets/pic1.png)
-![image2](./assets/pic2.png)
+![image1](./assets/pic1.jpg)
+![image2](./assets/pic2.jpg)
 
 ## 💻 Technologies Used
 - HTML5
