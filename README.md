@@ -1,6 +1,6 @@
-# Neon Todo List 💚
+# Minimal Todo List 💚
 
-Very Minimal and Simple todo implementation using tailwindcss and alpineJs
+Very Minimal and Simple todo App implementation using tailwindCSS and AlpineJs
 
 ![image1](./assets/pic1.jpg)
 ![image2](./assets/pic2.jpg)
