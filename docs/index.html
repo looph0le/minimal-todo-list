@@ -45,14 +45,21 @@
             <div class="opacity-0 scale-50 duration-1000 blur-lg" x-intersect="$el.classList.add('opacity-100', 'scale-100', 'blur-0')">
                 <h1 class="text-2xl text-gray-900/50 m-5">Todo List</h1>
 
-                <h1 x-show="todos.length == 0" class="text-xl text-gray-900">List Empty...Enter Something</h1>
+                <h1 x-show="todos.length == 0" class="text-xl text-gray-900" x-transition>List Empty...Enter Something</h1>
             </div>
 
 
             <div x-data="{ userConfirm: false}">
                 <button @click="userConfirm = true" x-show="todos.length > 0" class="text-sm text-black m-1 p-2 mb-5 rounded-xl bg-green-500 hover:bg-green-500/70 opacity-0 transition duration-1000 blur-md" x-intersect="$el.classList.add('opacity-100', 'blur-0')">Clear All</button>
 
-                <div x-show="userConfirm " class=" scale-50 opacity-0 transition duration-1000" x-intersect="$el.classList.add('opacity-100', 'scale-100')">
+                <div x-show="userConfirm " class="transition duration-1000"
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 scale-90"
+                     x-transition:enter-end="opacity-100 scale-100"
+                     x-transition:leave="transition ease-in duration-300"
+                     x-transition:leave-start="opacity-100 scale-100"
+                     x-transition:leave-end="opacity-0 scale-90"
+                >
                     <p class="text-gray-900 scale-60 opacity-0 transition duration-1000" x-intersect="$el.classList.add('opacity-100', 'scale-100')">Are you sure ?</p>
                     <button class="text-black bg-green-500 m-1 px-2 py-1 rounded-xl" @click=" todos = [] , userConfirm = false">YES</button>
                     <button class="text-black bg-rose-500 m-1 px-2 py-1 rounded-xl" @click="userConfirm = false">NO</button>
@@ -70,10 +77,12 @@
             </template>
 
 
-            <div class="text-center p-5 opacity-0 transition translate-y-40 duration-[1300ms] blur-lg" x-intersect="$el.classList.add('opacity-100', 'translate-y-0', 'blur-0')">
+            <div class="text-center p-5 opacity-0 transition translate-y-40 duration-[1300ms] blur" x-intersect="$el.classList.add('opacity-100', 'translate-y-0', 'blur-0')" x-transition>
+                <div>
                 <span x-text="todos.filter((todo) => todo.completed).length" class="text-xl text-gray-900"></span>
-                <span class="text-green-500 text-xl">/</span>
+                <span class="text-green-600 text-xl">/</span>
                 <span x-text="todos.length" class="text-xl text-gray-900"></span>
+                </div>
             </div>
 
             
